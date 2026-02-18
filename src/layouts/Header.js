@@ -65,7 +65,7 @@ export default function Header() {
                         <div className='header__icons'>
                             <NavLink to="/customer/login" className='header__link'>
                                 <span className="header__user-status">
-                                    {isAuthenticated ? 'Hi, ' + user.firstName : 'Sing in'}
+                                    {isAuthenticated ? 'Hi, ' + user.firstName : 'Sign in'}
                                 </span>
                                 <span className="btn-accent-primary header__btn-login">
                                     <IoPersonSharp size={18} />

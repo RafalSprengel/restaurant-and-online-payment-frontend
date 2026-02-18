@@ -130,6 +130,22 @@
     margin: 0;
 }
 
+.hello-modal-dont-show-link {
+    display: inline-block;
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: var(--modal-text-darker);
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.hello-modal-dont-show-link:hover {
+    color: var(--modal-main-orange);
+}
+
 @media (max-width: 576px) {
     .hello-modal-container {
         padding: 20px;

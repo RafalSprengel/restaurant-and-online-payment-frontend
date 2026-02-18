@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './HelloModal.css';
 
 const HelloModal = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const hasSeenModal = localStorage.getItem('hasSeenHelloModal');
-        if (!hasSeenModal) {
+        
+        if (location.pathname === '/' && !hasSeenModal) {
             const timer = setTimeout(() => setIsVisible(true), 1500);
             return () => clearTimeout(timer);
+        } else {
+            setIsVisible(false);
         }
-    }, []);
+    }, [location.pathname]);
 
     useEffect(() => {
         if (isVisible) {
@@ -22,7 +27,12 @@ const HelloModal = () => {
 
     const handleClose = () => {
         setIsVisible(false);
-        // localStorage.setItem('hasSeenHelloModal', 'true');
+    };
+
+    const handleDontShowAgain = (e) => {
+        e.preventDefault();
+        localStorage.setItem('hasSeenHelloModal', 'true');
+        setIsVisible(false);
     };
 
     if (!isVisible) return null;
@@ -42,7 +52,7 @@ const HelloModal = () => {
                 </h2>
 
                 <p className="hello-modal-text">
-                    I'm <strong>Rafał Sprengel</strong>. Explore this <strong>Full-Stack Web Application</strong>.
+                    I'm <strong>Rafał Sprengel</strong>. Explore this <strong>Full-Stack Application</strong>.
                     Feel free to look around or test the management features.
                 </p>
 
@@ -68,6 +78,12 @@ const HelloModal = () => {
                     <p>
                         💡 Links are also available via the <strong>"Sign In"</strong> button in the Top Bar and the <strong>"Admin"</strong> link in the Footer.
                     </p>
+                    <button 
+                        onClick={handleDontShowAgain} 
+                        className="hello-modal-dont-show-link"
+                    >
+                        Don't show this message again
+                    </button>
                 </div>
             </div>
         </div>
