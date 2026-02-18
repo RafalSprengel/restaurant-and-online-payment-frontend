@@ -47,12 +47,14 @@ import PersonalDetails from './components/customerPanel/PersonalDetails.js';
 import NoConnection from './pages/NoConnection.js';
 import GTMPageviewTracker from './components/GTMPageviewTracker';
 import CookieConsent from './components/CookieConsent';
+import HelloModal from './components/HelloModal.js';
 
 
 
 function App() {
      return (
           <MantineProvider>
+               <HelloModal />
                <Notifications />
                <ModalsProvider>
                     <AuthProvider>
